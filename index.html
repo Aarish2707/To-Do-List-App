@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <script src="angular.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="todoCtrl">
+    <div class="input-container">
+        <h1>To-Do List</h1>
+        <input type="text" ng-model="newTask" placeholder="Enter new task" /><br>
+        <button class="add" ng-click="addTask()">Add Task</button>
+      
+        <ul>
+          <li ng-repeat="task in tasks">
+            <span ng-class="{done: task.completed}">{{ task.name }}</span>
+            <br>
+            <button class="remove" ng-click="deleteTask($index)">Delete</button><br>
+            <button class="done" ng-click="toggleComplete(task)">Done</button>
+            <br><br>
+          </li>
+        </ul>
+      </div>
+      
+</body>
+</html>
