@@ -70,28 +70,28 @@ const TodoApp = ({ token, user, logout }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+        <div className="w-10 h-10 border-4 rounded-full border-white/30 border-t-white animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
-      <div className="max-w-2xl mx-auto pt-8">
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
-          <div className="flex justify-between items-center mb-8 pb-6 border-b border-gray-200">
+    <div className="min-h-screen p-4 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+      <div className="max-w-2xl pt-8 mx-auto">
+        <div className="p-8 border shadow-2xl bg-white/95 backdrop-blur-sm rounded-3xl border-white/20">
+          <div className="flex items-center justify-between pb-6 mb-8 border-b border-gray-200">
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text">
                 Welcome back, {user.username}!
               </h1>
-              <p className="text-gray-600 text-sm mt-1">
+              <p className="mt-1 text-sm text-gray-600">
                 {completedCount} of {totalCount} tasks completed
               </p>
             </div>
             <button 
               onClick={logout} 
-              className="px-4 py-2 bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors duration-200 text-sm font-medium"
+              className="px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 bg-gray-100 rounded-xl hover:bg-gray-200"
             >
               Logout
             </button>
@@ -104,35 +104,35 @@ const TodoApp = ({ token, user, logout }) => {
                 value={newTodo}
                 onChange={(e) => setNewTodo(e.target.value)}
                 placeholder="What needs to be done?"
-                className="flex-1 px-5 py-4 border-2 border-gray-200 rounded-2xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 bg-white/90"
+                className="flex-1 px-5 py-4 transition-all duration-300 border-2 border-gray-200 rounded-2xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 bg-white/90"
               />
               <button 
                 type="submit" 
-                className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-semibold hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+                className="px-6 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl hover:-translate-y-1 hover:shadow-lg"
               >
                 Add Task
               </button>
             </div>
           </form>
 
-          <div className="grid grid-cols-3 gap-4 mb-8 p-5 bg-indigo-50 rounded-2xl">
+          <div className="grid grid-cols-3 gap-4 p-5 mb-8 bg-indigo-50 rounded-2xl">
             <div className="text-center">
               <div className="text-2xl font-bold text-indigo-600">{totalCount}</div>
-              <div className="text-xs text-gray-600 uppercase tracking-wide">Total</div>
+              <div className="text-xs tracking-wide text-gray-600 uppercase">Total</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-indigo-600">{completedCount}</div>
-              <div className="text-xs text-gray-600 uppercase tracking-wide">Completed</div>
+              <div className="text-xs tracking-wide text-gray-600 uppercase">Completed</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-indigo-600">{totalCount - completedCount}</div>
-              <div className="text-xs text-gray-600 uppercase tracking-wide">Remaining</div>
+              <div className="text-xs tracking-wide text-gray-600 uppercase">Remaining</div>
             </div>
           </div>
 
-          <div className="max-h-96 overflow-y-auto">
+          <div className="overflow-y-auto max-h-96">
             {todos.length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <div className="py-12 text-center text-gray-500">
                 <p>No tasks yet. Add one above to get started!</p>
               </div>
             ) : (
