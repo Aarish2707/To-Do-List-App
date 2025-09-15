@@ -7,10 +7,6 @@ const TodoApp = ({ token, user, logout }) => {
   const [newTodo, setNewTodo] = useState('');
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchTodos();
-  }, [fetchTodos]);
-
   const fetchTodos = useCallback(async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/todos`, {
@@ -23,6 +19,10 @@ const TodoApp = ({ token, user, logout }) => {
       setLoading(false);
     }
   }, [token]);
+
+  useEffect(() => {
+    fetchTodos();
+  }, [fetchTodos]);
 
   const addTodo = async (e) => {
     e.preventDefault();
