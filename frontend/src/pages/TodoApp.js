@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import TodoItem from '../components/TodoItem';
 
@@ -9,9 +9,9 @@ const TodoApp = ({ token, user, logout }) => {
 
   useEffect(() => {
     fetchTodos();
-  }, []);
+  }, [fetchTodos]);
 
-  const fetchTodos = async () => {
+  const fetchTodos = useCallback(async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/todos`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -22,7 +22,7 @@ const TodoApp = ({ token, user, logout }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   const addTodo = async (e) => {
     e.preventDefault();
