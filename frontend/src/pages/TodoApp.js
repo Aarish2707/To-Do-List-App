@@ -13,7 +13,7 @@ const TodoApp = ({ token, user, logout }) => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('/api/todos', {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/todos`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTodos(response.data);
@@ -29,7 +29,7 @@ const TodoApp = ({ token, user, logout }) => {
     if (!newTodo.trim()) return;
 
     try {
-      const response = await axios.post('/api/todos', 
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/todos`, 
         { text: newTodo },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -42,7 +42,7 @@ const TodoApp = ({ token, user, logout }) => {
 
   const toggleTodo = async (id, completed) => {
     try {
-      const response = await axios.put(`/api/todos/${id}`, 
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/todos/${id}`, 
         { completed },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -56,7 +56,7 @@ const TodoApp = ({ token, user, logout }) => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`/api/todos/${id}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/todos/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTodos(todos.filter(todo => todo._id !== id));

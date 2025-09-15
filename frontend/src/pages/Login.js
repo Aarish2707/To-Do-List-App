@@ -23,7 +23,7 @@ const Login = ({ setToken, setUser }) => {
     setError('');
 
     try {
-      const response = await axios.post('/api/login', formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, formData);
       setToken(response.data.token);
       setUser(response.data.user);
     } catch (error) {
